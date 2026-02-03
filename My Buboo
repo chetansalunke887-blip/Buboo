@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Will You Marry Me?</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Segoe UI', sans-serif;
+    overflow: hidden;
+}
+
+.box {
+    background: white;
+    padding: 30px 25px;
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+    animation: pop 1s ease;
+    z-index: 10;
+}
+
+@keyframes pop {
+    0% { transform: scale(0.5); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+h1 {
+    color: #ff4d6d;
+    margin-bottom: 25px;
+    font-size: 26px;
+}
+
+button {
+    padding: 12px 28px;
+    font-size: 18px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+#yes {
+    background-color: #38b000;
+    color: white;
+}
+
+#no {
+    background-color: #ff595e;
+    color: white;
+    position: absolute;
+}
+
+/* Floating hearts */
+.heart {
+    position: absolute;
+    bottom: -20px;
+    font-size: 20px;
+    animation: floatUp 6s linear infinite;
+    opacity: 0.8;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-120vh);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Romantic instrumental music (Om Shanti Om vibe) -->
+<audio autoplay loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
+</audio>
+
+<div class="box">
+    <h1>Akahata Gaikwad ❤️<br>Will you marry me? 💍</h1>
+    <button id="yes" onclick="yesClicked()">Yes 😍</button>
+    <button id="no" onmouseover="moveNo()">No 🙈</button>
+</div>
+
+<script>
+function moveNo() {
+    const noBtn = document.getElementById("no");
+    const x = Math.random() * (window.innerWidth - 120);
+    const y = Math.random() * (window.innerHeight - 120);
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+}
+
+function yesClicked() {
+    document.body.innerHTML = `
+        <div style="color:white;text-align:center;animation:pop 1s ease;">
+            <h1>She said YES!!! 💖💍</h1>
+            <h2>Akahata & You — Forever Begins 🥰</h2>
+        </div>
+    `;
+}
+
+// Create floating hearts
+setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random() * 20 + 15 + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 6000);
+}, 400);
+</script>
+
+</body>
+</html>
